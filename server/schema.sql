@@ -24,7 +24,7 @@ CREATE TABLE messages (
   content varchar(255),
   Foreign Key: users_id and rooms_id*/
   id int NOT NULL,
-  content varchar(255),
+  text varchar(255),
   username varchar(255),
   roomname varchar(255),
    user_id int,
