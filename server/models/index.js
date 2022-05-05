@@ -3,21 +3,24 @@ var db = require('../db');
 module.exports = {
   messages: {
     get: function (callback) {
-      db.dbConnection.query('SELECT * FROM messages', function (err, results) {
+      db.query('SELECT * FROM messages', function (err, results) {
         if (err) {
-          throw err;
+          console.log('GET MSG ERROR!!!', err);
         } else {
-          callback(results);
+          console.log('the result we get is:', results);
+          callback(null, results);
         }
       });
     }, // a function which produces all the messages
-    post: function (message, callback) {
-      var queryString = `INSERT INTO messages VALUES (null, ${message.text}, ${message.username}, ${message.roomname})`;
-      db.dbConnection.query(queryString, function(err, results) {
+    post: function (body, callback) {
+      console.log('this is body:', body);
+      var queryString = `INSERT INTO messages (msg_text,roomname ) VALUES ("${body.message}", "${body.roomname}")`;
+      db.query(queryString, function(err, results) {
         if (err) {
-          throw err;
+          console.log('POST MSG ERROR!!!', err);
         } else {
-          callback(results);
+          console.log('the result we posted is:', results);
+          callback(null, results);
         }
 
       });
@@ -28,21 +31,25 @@ module.exports = {
   users: {
     // Ditto as above.
     get: function (callback) {
-      db.dbConnection.query('SELECT * FROM users', function (err, results) {
+      db.query('SELECT * FROM users', function (err, results) {
         if (err) {
-          throw err;
+          console.log('GET USER ERROR!!!', err);
         } else {
-          callback(results);
+          console.log('the users result we get is:', results);
+          callback(null, results);
         }
       });
+
     },
-    post: function (message, callback) { //?????may need another look
-      var queryString = `INSERT INTO users VALUES (null,${message.username}`;
-      db.dbConnection.query(queryString, function(err, results) {
+    post: function (body, callback) {
+      var queryString = `INSERT INTO users (username) VALUES ("${body.username}")`;
+      db.query(queryString, function(err, results) {
         if (err) {
-          throw err;
+          console.log('POST USER ERROR!!!', err);
         } else {
-          callback(results);
+          console.log('this is username:', body.username);
+          console.log('the users result we posted is:', results);
+          callback(null, results);
         }
 
       });

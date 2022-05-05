@@ -17,11 +17,14 @@
   },
   "dependencies": {
     "body-parser": "^1.9.2",
+    "cors": "^2.8.5",
     "express": "^4.10.1",
+    "jquery": "^3.6.0",
     "morgan": "^1.4.1",
     "mysql": "^2.18.1",
     "request": "^2.88.2",
-    "sequelize": "^3.21.0"
+    "sequelize": "^3.21.0",
+    "underscore": "^1.13.3"
   },
   "devDependencies": {
     "babel-cli": "^6.7.5",

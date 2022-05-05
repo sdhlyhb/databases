@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS chat;
+-- DROP DATABASE IF EXISTS chat;
 CREATE DATABASE chat;
 
 USE chat;
@@ -24,9 +24,10 @@ CREATE TABLE messages (
   /*id (Primary Key) int NOT NULL,
   content varchar(255),
   Foreign Key: users_id and rooms_id*/
+  -- username and roomname info repeated?????
   id int(11) NOT NULL AUTO_INCREMENT,
   msg_text varchar(255),
-  username varchar(255),
+  -- username varchar(255),
   roomname varchar(255),
    user_id int,
    room_id int,
