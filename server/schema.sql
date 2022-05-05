@@ -1,10 +1,11 @@
+DROP DATABASE IF EXISTS chat;
 CREATE DATABASE chat;
 
 USE chat;
 
 CREATE TABLE users (
 
-  id int NOT NULL,
+  id int(11) NOT NULL AUTO_INCREMENT,
   username varchar(255),
   PRIMARY KEY (id)
 
@@ -12,7 +13,7 @@ CREATE TABLE users (
 
 CREATE TABLE rooms (
 
-  id int NOT NULL,
+  id int(11) NOT NULL AUTO_INCREMENT,
   roomname varchar(255),
   PRIMARY KEY (id)
 
@@ -23,8 +24,8 @@ CREATE TABLE messages (
   /*id (Primary Key) int NOT NULL,
   content varchar(255),
   Foreign Key: users_id and rooms_id*/
-  id int NOT NULL,
-  text varchar(255),
+  id int(11) NOT NULL AUTO_INCREMENT,
+  msg_text varchar(255),
   username varchar(255),
   roomname varchar(255),
    user_id int,
