@@ -29,9 +29,15 @@ var App = {
     Parse.readAll((data) => {
 
       // Only update if we have messages.
-      if (data.results) {
-        Rooms.update(data.results, RoomsView.render);
-        Messages.update(data.results, MessagesView.render);
+      // if (data.results) {
+      //   Rooms.update(data.results, RoomsView.render);
+      //   Messages.update(data.results, MessagesView.render);
+      //   callback();
+      // }
+      if (data && data.length) {
+        Rooms.update(data, RoomsView.render);
+        Messages.update(data, MessagesView.render);
+
         callback();
       }
       return;

@@ -14,7 +14,7 @@ module.exports = {
     }, // a function which produces all the messages
     post: function (body, callback) {
       console.log('this is body:', body);
-      var queryString = `INSERT INTO messages (msg_text,roomname ) VALUES ("${body.message}", "${body.roomname}")`;
+      var queryString = `INSERT INTO messages (msg_text,roomname, user_id ) VALUES ("${body.text}", "${body.roomname}", (SELECT id FROM users WHERE username = "${body.username}"))`;
       db.query(queryString, function(err, results) {
         if (err) {
           console.log('POST MSG ERROR!!!', err);
@@ -42,7 +42,7 @@ module.exports = {
 
     },
     post: function (body, callback) {
-      var queryString = `INSERT INTO users (username) VALUES ("${body.username}")`;
+      var queryString = `INSERT INTO users (username) SELECT ("${body.username}") WHERE NOT EXISTS (SELECT id FROM users WHERE username = "${body.username}" )`;
       db.query(queryString, function(err, results) {
         if (err) {
           console.log('POST USER ERROR!!!', err);
