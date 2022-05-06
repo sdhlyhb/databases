@@ -7,6 +7,7 @@ var models = require('../models');
 //   'access-control-max-age': 10 // Seconds.
 // };
 
+
 module.exports = {
   messages: {
     get: function (req, res) {
