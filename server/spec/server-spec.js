@@ -171,5 +171,44 @@ describe('Persistent Node Chat Server', function() {
   });
 
 
+  it('Should be able to post messages of same content at different rooms', function(done) {
+    // Post the user to the chat server.
+    request({
+      method: 'POST',
+      uri: 'http://127.0.0.1:3000/classes/messages',
+      json: {
+        username: 'Jeff',
+        text: 'Hello world!',
+        roomname: 'room1'}
+    }, function () {
+      // Post a message to the node chat server:
+      request({
+        method: 'POST',
+        uri: 'http://127.0.0.1:3000/classes/messages',
+        json: {
+          username: 'jeff',
+          text: 'Hello world!',
+          roomname: 'room2'}
+      }, function () {
+
+        var queryString = 'SELECT * FROM messages';
+        console.log(queryString);
+        var queryArgs = [];
+
+        dbConnection.query(queryString, queryArgs, function(err, results) {
+
+
+          console.log('this is the results:', results);
+          expect(results.length).to.equal(2);
+
+          expect(results[0].roomname).to.equal('room1');
+          expect(results[1].roomname).to.equal('room2');
+
+          done();
+        });
+      });
+    });
+  });
+
 
 });

@@ -9,9 +9,69 @@ var Sequelize = require('sequelize');
 
 
 
-var db = new Sequelize('chat', 'root');
-db.connect();
-module.exports = db;
+var db = new Sequelize('chat', 'root', '', {
+  define: {
+    timestamps: false
+  }
+});
+
+db.authenticate()
+  .then(() => console.log('Connection has been established successfully.'))
+  .catch ((error) => console.error('Unable to connect to the database:', error));
+
+
+
+var User = db.define('users', {
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    allowNull: false,
+    primaryKey: true
+  },
+  username: Sequelize.STRING
+});
+
+var Message = db.define('messages', {
+  // // eslint-disable-next-line camelcase
+  // msg_text: Sequelize.STRING,
+  // roomname: Sequelize.STRING
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    allowNull: false,
+    primaryKey: true
+  },
+
+  // eslint-disable-next-line camelcase
+  msg_text: Sequelize.STRING,
+  roomname: Sequelize.STRING,
+  // eslint-disable-next-line camelcase
+  user_id: {
+    type: Sequelize.INTEGER,
+    references: {
+      model: 'users',
+      key: 'id'
+    }
+  }
+});
+
+// User.hasMany(Message);
+// Message.belongsTo(User);
+
+User.sync();
+Message.sync();
+
+
+
+
+
+module.exports.db = db;
+module.exports.User = User;
+module.exports.Message = Message;
+
+
+
+
 
 /************************************************/
 // var connection = mysql.createConnection({

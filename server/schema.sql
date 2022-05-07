@@ -33,10 +33,6 @@ CREATE TABLE messages (
   --  room_id int,
   PRIMARY KEY (id),
   FOREIGN KEY (user_id) REFERENCES users(id)
-
-
-
-
 );
 
 /* Create other tables and define schemas for them here! */
