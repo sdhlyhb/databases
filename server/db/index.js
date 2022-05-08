@@ -32,9 +32,7 @@ var User = db.define('users', {
 });
 
 var Message = db.define('messages', {
-  // // eslint-disable-next-line camelcase
-  // msg_text: Sequelize.STRING,
-  // roomname: Sequelize.STRING
+
   id: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
@@ -56,7 +54,7 @@ var Message = db.define('messages', {
 });
 
 // User.hasMany(Message);
-// Message.belongsTo(User);
+// Message.belongsTo(User); //will added extra key to the table.
 
 User.sync();
 Message.sync();
@@ -73,13 +71,3 @@ module.exports.Message = Message;
 
 
 
-/************************************************/
-// var connection = mysql.createConnection({
-//   user: 'root',
-//   // password: '',
-//   database: 'chat',
-// });
-
-// connection.connect();
-
-// module.exports = connection;

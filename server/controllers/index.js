@@ -1,11 +1,5 @@
 var models = require('../models');
 
-// var headers = {
-//   'access-control-allow-origin': '*',
-//   'access-control-allow-methods': 'GET, POST, PUT, DELETE, OPTIONS',
-//   'access-control-allow-headers': 'Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization',
-//   'access-control-max-age': 10 // Seconds.
-// };
 
 
 module.exports = {
@@ -17,7 +11,7 @@ module.exports = {
           res.send(err);
         } else {
           console.log('Success GETTING MSGS!');
-          // res.writeHead(200, headers);
+
           res.status(200).send(results);
         }
       });
@@ -29,7 +23,7 @@ module.exports = {
           console.error('ERROR POSTING MSGS!');
           res.send(err);
         } else {
-          // res.writeHead(201, headers);
+
           console.log('Success POSTING MSGS!');
           res.status(201).send(req.body);
         }
@@ -44,7 +38,7 @@ module.exports = {
         if (err) {
           res.send(err);
         } else {
-          // res.writeHead(200, headers);
+
           res.status(200).send(results);
         }
       });
@@ -56,7 +50,7 @@ module.exports = {
           res.send(err);
         } else {
           console.log('Success POSTING USERS!');
-          // res.writeHead(201, headers);
+
           res.status(201).send(req.body);
         }
       });
