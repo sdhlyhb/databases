@@ -18,12 +18,12 @@ module.exports = {
         } else {
           console.log('Success GETTING MSGS!');
           // res.writeHead(200, headers);
-          res.send(results);
+          res.status(200).send(results);
         }
       });
     }, // a function which handles a get request for all messages
     post: function (req, res) {
-      console.log(req.body);
+      console.log('this is the request body:', req.body);
       models.messages.post(req.body, (err) => {
         if (err) {
           console.error('ERROR POSTING MSGS!');
@@ -31,7 +31,7 @@ module.exports = {
         } else {
           // res.writeHead(201, headers);
           console.log('Success POSTING MSGS!');
-          res.send(req.body);
+          res.status(201).send(req.body);
         }
       });
     } // a function which handles posting a message to the database
@@ -45,7 +45,7 @@ module.exports = {
           res.send(err);
         } else {
           // res.writeHead(200, headers);
-          res.send(results);
+          res.status(200).send(results);
         }
       });
     },
@@ -57,7 +57,7 @@ module.exports = {
         } else {
           console.log('Success POSTING USERS!');
           // res.writeHead(201, headers);
-          res.send(req.body);
+          res.status(201).send(req.body);
         }
       });
     }

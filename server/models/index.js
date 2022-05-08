@@ -6,7 +6,7 @@ var Sequelize = require('sequelize');
 module.exports = {
   messages: {
     get: function (callback) {
-      db.Message.findAll()
+      return db.Message.findAll()
         .then ((results) => callback(results) )
         .catch (err => console.log('Error getting messages!'));
 
@@ -54,19 +54,17 @@ module.exports = {
   users: {
     // Ditto as above.
     get: function (callback) {
-      db.User.sync()
-        .then(() => { return db.User.findAll(); })
+      return db.User.findAll()
         .then ((results) => callback(results) )
         .catch (err => console.log('Error getting users!'));
 
 
     },
     post: function (body, callback) {
-      db.User.sync()
-        .then(() => {
 
-          return db.User.findOrCreate({where: {username: body.username}});
-        })
+
+      return db.User.findOrCreate({where: {username: body.username}})
+
         .then ((results) => callback(results) )
         .catch (err => console.log('Error posting users!'));
 
